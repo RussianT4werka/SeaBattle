@@ -20,7 +20,7 @@ namespace SeaBattle.Views
     /// </summary>
     public partial class StabbingPage : Page
     {
-        public StabbingPage(ViewModels.MainWindowVM mainWindowVM)
+        public StabbingPage(ViewModels.MainWindowVM mainVM)
         {
             InitializeComponent();
         }
