@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -19,7 +20,7 @@ namespace SeaBattle.Tools
             PropertyNameCaseInsensitive = true
         };
 
-        public static async Task<string> SendPostAsync(string controller, string method, object body)
+        public static async Task<(HttpStatusCode, string)> SendPostAsync(string controller, string method, object body)
         {
             string url = host + controller;
             if (!string.IsNullOrEmpty(method))
@@ -27,7 +28,8 @@ namespace SeaBattle.Tools
 
             string json = JsonSerializer.Serialize(body, body.GetType(), options);
             var response = await client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
-            return await response.Content.ReadAsStringAsync();
+            var result = (response.StatusCode, await response.Content.ReadAsStringAsync());
+            return result;
         }
 
         public static T Deserialize<T>(string json)
