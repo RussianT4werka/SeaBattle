@@ -12,7 +12,7 @@ namespace SeaBattle.Tools
     {
         static HttpClient client = new HttpClient();
 
-        static string host = "http://localhost:7041/api/";
+        static string host = "https://localhost:7041/api/";
         static JsonSerializerOptions options = new JsonSerializerOptions
         {
             ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve,

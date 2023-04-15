@@ -24,7 +24,7 @@
                 <Label Content="Почта"/>
                 <TextBox Text="{Binding Email}"/>
                 <Label Content="Пароль"/>
-                <PasswordBox />
+                <TextBox Text="{Binding Password}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Margin="0,15,0,0">
                 <Button Command="{Binding Registration}" Content="Зарегестрироваться"/>

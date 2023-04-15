@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SeaBattle.ViewModels
 {
@@ -36,7 +37,11 @@ namespace SeaBattle.ViewModels
                 {
                     try
                     {
-                        string json = await HttpTool.SendPostAsync("SignIn", "SignInUser", Player);
+                        Player = new User();
+                        Player.Login = Login;
+                        Player.Password = Password;
+                        Player.Email = "shit@gavno.ru";
+                        string json = await HttpTool.SendPostAsync("Users", "SignIn", Player);
                         var result = HttpTool.Deserialize<User>(json);
                         Player = result;
                     }
@@ -45,7 +50,7 @@ namespace SeaBattle.ViewModels
                         MessageBox.Show("Ошибка связи с БД");
                         return;
                     }
-                    if (Player == null)
+                    if (Player.Id == 0)
                     {
                         MessageBox.Show("Неверный логин или пароль");
                         return;
