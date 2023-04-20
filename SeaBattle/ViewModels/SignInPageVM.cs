@@ -44,21 +44,23 @@ namespace SeaBattle.ViewModels
                         string json = await HttpTool.SendPostAsync("Users", "SignIn", Player);
                         var result = HttpTool.Deserialize<User>(json);
                         Player = result;
+                        if (Player.Id == 0)
+                        {
+                            MessageBox.Show("Неверный логин или пароль");
+                            return;
+                        }
+                        else
+                        {
+                            mainVM.CurrentPage = new StabbingPage(mainVM);
+                        }
+                           
                     }
                     catch
                     {
                         MessageBox.Show("Ошибка связи с БД");
                         return;
                     }
-                    if (Player.Id == 0)
-                    {
-                        MessageBox.Show("Неверный логин или пароль");
-                        return;
-                    }
-                    else
-                    {
-                        mainVM.CurrentPage = new StabbingPage(mainVM);
-                    }
+                   
                 }
             });
         }

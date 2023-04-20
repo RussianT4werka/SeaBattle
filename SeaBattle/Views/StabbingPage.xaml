@@ -15,10 +15,14 @@
         </Grid.ColumnDefinitions>
         <Canvas Grid.Column="1" x:Name="BattleFieldSelf"  MouseLeftButtonDown="Down" Width="500" Height="500">
             <Canvas.Background>
-                <ImageBrush ImageSource="/Images/Безымянный.png"/>
+                <ImageBrush ImageSource="/Images/field.png"/>
             </Canvas.Background>
         </Canvas>
-        <Canvas Grid.Column="2" x:Name="BattleFieldEnemy" Background="red" MouseLeftButtonDown="Down" Width="500" Height="500"/>
+        <Canvas Grid.Column="2" x:Name="BattleFieldEnemy"  MouseLeftButtonDown="Down1" Width="500" Height="500">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/Images/field.png"/>
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 
 </Page>

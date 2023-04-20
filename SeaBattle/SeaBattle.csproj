@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\bulk.png" />
     <None Remove="Images\MainImage2.jpeg" />
     <None Remove="Views\Безымянный.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\bulk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +31,7 @@
     <Resource Include="Images\MainImage2.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Безымянный.png" />
+    <Resource Include="Images\field.png" />
   </ItemGroup>
 
 </Project>
