@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SeaBattleAPI.Models
+namespace SeaBattle.Models
 {
     public partial class EndGame
     {
         public int Id { get; set; }
-        public int UserWinId { get; set; }
-        public int UserShitId { get; set; }
-        public int TurnCountUserWin { get; set; }
-        public int TurnCountUserShit { get; set; }
+        public int? UserWin { get; set; }
+        public int? UserShit { get; set; }
+        public int? TurnCountUserWin { get; set; }
+        public DateTime? GameTimeEnd { get; set; }
+        public int RoomId { get; set; }
 
-        public virtual User UserShit { get; set; } = null!;
-        public virtual User UserWin { get; set; } = null!;
+        public virtual Room Room { get; set; } = null!;
     }
 }

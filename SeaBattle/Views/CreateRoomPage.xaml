@@ -1,0 +1,55 @@
+﻿<Page x:Class="SeaBattle.Views.CreateRoomPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SeaBattle.Views"
+      xmlns:vm="clr-namespace:SeaBattle.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{DynamicResource VM}"
+      Title="CreateRoomPage">
+    <Page.Resources>
+        <vm:CreateRoomPageVM x:Key="VM"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Label Content="Поиск по имени комнаты"/>
+            <TextBox Text="{Binding хуй}"/>
+            <Label Content="Статус"/>
+            <ComboBox ItemsSource="{Binding хуй}"
+                      DisplayMemberPath=""
+                      SelectedItem="{Binding хуй}"/>
+        </StackPanel>
+
+        <Button Grid.Row="1" VerticalAlignment="Bottom" Command="{Binding CreateRoom}" Content="Создать комнату"/>
+
+
+        <ListView Grid.RowSpan="2" Grid.Column="1" ItemsSource="{Binding Rooms}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding Join}" Header="Присоединиться"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название комнаты" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Создатель" DisplayMemberBinding="{Binding UserCreator.Login}"/>
+                    <GridViewColumn Header="Соперник" DisplayMemberBinding="{Binding UserSlow.Login}"/>
+                    <GridViewColumn Header="Время начала игры" DisplayMemberBinding="{Binding GameTimeStart}"/>
+                    <GridViewColumn Header="Статус игры" DisplayMemberBinding="{Binding Status.Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

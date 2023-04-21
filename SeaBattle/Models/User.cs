@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SeaBattleAPI.Models
+namespace SeaBattle.Models
 {
     public partial class User
     {
         public User()
         {
-            EndGameUserShits = new HashSet<EndGame>();
-            EndGameUserWins = new HashSet<EndGame>();
+            RoomUserCreators = new HashSet<Room>();
+            RoomUserSlows = new HashSet<Room>();
         }
 
         public int Id { get; set; }
@@ -16,7 +16,7 @@ namespace SeaBattleAPI.Models
         public string Login { get; set; } = null!;
         public string Password { get; set; } = null!;
 
-        public virtual ICollection<EndGame> EndGameUserShits { get; set; }
-        public virtual ICollection<EndGame> EndGameUserWins { get; set; }
+        public virtual ICollection<Room> RoomUserCreators { get; set; }
+        public virtual ICollection<Room> RoomUserSlows { get; set; }
     }
 }

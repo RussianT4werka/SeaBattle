@@ -1,6 +1,6 @@
-﻿using SeaBattle.Tools;
+﻿using SeaBattle.Models;
+using SeaBattle.Tools;
 using SeaBattle.Views;
-using SeaBattleAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,13 +14,13 @@ namespace SeaBattle.ViewModels
 {
     public class RegistrationPageVM:BaseVM
     {
-        public User Player { get; set; } 
+        public User Player { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public Command Registration { get; set; }
         public Command ToSignInPage { get; set; }
         public Command SeaComplex { get; set; }
-        public RegistrationPageVM(MainWindowVM mainVM)
+        public RegistrationPageVM()
         {
             Registration = new Command(async() =>
             {
@@ -37,22 +37,21 @@ namespace SeaBattle.ViewModels
                         Player.Email = Email;
                         Player.Login = "Login";
                         Player.Password = Password;
-                        string json = await HttpTool.SendPostAsync("Users", "Registration", Player);
-                        var result = HttpTool.Deserialize<User>(json);
-                        Player = result;
+                        var answer = await HttpTool.SendPostAsync("Users", "Registration", Player);
+                        if (answer.Item1 == System.Net.HttpStatusCode.OK)
+                        {
+                            var result = HttpTool.Deserialize<User>(answer.Item2);
+                            Player = result;
+                            Auth.User = Player;
+                            Navigation.GetInstance().CurrentPage = new CreateRoomPage();
+                        }
+                        else
+                            MessageBox.Show(answer.Item2);
                     }
                     catch
                     {
                         MessageBox.Show("Ошибка связи с БД");
                         return;
-                    }
-                    if(Player.Id == 0)
-                    {
-                        MessageBox.Show("Ошибка регистрации");
-                    }
-                    else
-                    {
-                        mainVM.CurrentPage = new StabbingPage(mainVM);
                     }
                 }
             });
@@ -60,7 +59,7 @@ namespace SeaBattle.ViewModels
             ToSignInPage = new Command(() =>
             {
                 MessageBox.Show("Да блять заткнись!");
-                mainVM.CurrentPage = new SignInPage(mainVM);
+                Navigation.GetInstance().CurrentPage = new SignInPage();
             });
 
             SeaComplex = new Command(() =>

@@ -1,4 +1,6 @@
-﻿using SeaBattle.ViewModels;
+﻿using SeaBattle.Tools;
+using SeaBattle.ViewModels;
+using SeaBattle.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,8 @@ namespace SeaBattle
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVM();
+            DataContext = Navigation.GetInstance();
+            Navigation.GetInstance().CurrentPage = new RegistrationPage();
         }
     }
 }

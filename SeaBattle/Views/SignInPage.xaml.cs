@@ -21,10 +21,9 @@ namespace SeaBattle.Views
     /// </summary>
     public partial class SignInPage : Page
     {
-        public SignInPage(MainWindowVM mainVM)
+        public SignInPage()
         {
             InitializeComponent();
-            DataContext = new SignInPageVM(mainVM);
         }
     }
 }

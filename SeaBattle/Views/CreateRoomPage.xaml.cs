@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace SeaBattle.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RegistrationPage.xaml
+    /// Логика взаимодействия для CreateRoomPage.xaml
     /// </summary>
-    public partial class RegistrationPage : Page
+    public partial class CreateRoomPage : Page
     {
-        public RegistrationPage()
+        public CreateRoomPage()
         {
             InitializeComponent();
         }

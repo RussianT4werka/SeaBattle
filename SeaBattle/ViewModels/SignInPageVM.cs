@@ -1,6 +1,6 @@
 ﻿using SeaBattle.Tools;
 using SeaBattle.Views;
-using SeaBattleAPI.Models;
+using SeaBattle.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +19,11 @@ namespace SeaBattle.ViewModels
         public string Password { get; set; }
         public Command ToRegistrationPage { get; set; }
         public Command SignIn { get; set; }
-        public SignInPageVM(MainWindowVM mainVM)
+        public SignInPageVM()
         {
             ToRegistrationPage = new Command(() =>
             {
-                mainVM.CurrentPage = new RegistrationPage(mainVM);
+                Navigation.GetInstance().CurrentPage = new RegistrationPage();
             });
 
             SignIn = new Command(async () =>
@@ -41,24 +41,22 @@ namespace SeaBattle.ViewModels
                         Player.Login = Login;
                         Player.Password = Password;
                         Player.Email = "shit@gavno.ru";
-                        string json = await HttpTool.SendPostAsync("Users", "SignIn", Player);
-                        var result = HttpTool.Deserialize<User>(json);
-                        Player = result;
-                        if (Player.Id == 0)
+                        var answer = await HttpTool.SendPostAsync("Users", "SignIn", Player);
+                        if (answer.Item1 == System.Net.HttpStatusCode.OK)
                         {
-                            MessageBox.Show("Неверный логин или пароль");
-                            return;
+                            var result = HttpTool.Deserialize<User>(answer.Item2);
+                            Player = result;
+                            Auth.User = Player;
+                            Navigation.GetInstance().CurrentPage = new CreateRoomPage();
                         }
                         else
                         {
-                            mainVM.CurrentPage = new StabbingPage(mainVM);
+                            MessageBox.Show(answer.Item2);
                         }
-                           
                     }
                     catch
                     {
                         MessageBox.Show("Ошибка связи с БД");
-                        return;
                     }
                    
                 }
