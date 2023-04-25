@@ -24,7 +24,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="7.0.5" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Models">
+      <HintPath>..\..\SeaBattleAPILast\Models\bin\Debug\net6.0\Models.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       DataContext="{DynamicResource VM}"
-      Title="CreateRoomPage">
+      Title="CreateRoomPage" Loaded="Page_Loaded">
     <Page.Resources>
         <vm:CreateRoomPageVM x:Key="VM"/>
     </Page.Resources>
@@ -35,7 +35,7 @@
         <Button Grid.Row="1" VerticalAlignment="Bottom" Command="{Binding CreateRoom}" Content="Создать комнату"/>
 
 
-        <ListView Grid.RowSpan="2" Grid.Column="1" ItemsSource="{Binding Rooms}">
+        <ListView Grid.RowSpan="2" Grid.Column="1" ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedRoom}">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Command="{Binding Join}" Header="Присоединиться"/>
@@ -43,7 +43,7 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название комнаты" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="№ комнаты" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Создатель" DisplayMemberBinding="{Binding UserCreator.Login}"/>
                     <GridViewColumn Header="Соперник" DisplayMemberBinding="{Binding UserSlow.Login}"/>
                     <GridViewColumn Header="Время начала игры" DisplayMemberBinding="{Binding GameTimeStart}"/>

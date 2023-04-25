@@ -1,18 +1,11 @@
 ﻿using SeaBattle.Tools;
 using SeaBattle.Views;
-using SeaBattle.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using SeaBattleAPI.Models;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace SeaBattle.ViewModels
 {
-    public class SignInPageVM: BaseVM
+    public class SignInPageVM : BaseVM
     {
         public User Player { get; set; }
         public string Login { get; set; }
@@ -58,7 +51,7 @@ namespace SeaBattle.ViewModels
                     {
                         MessageBox.Show("Ошибка связи с БД");
                     }
-                   
+
                 }
             });
         }

@@ -1,15 +1,11 @@
-﻿using SeaBattle.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SeaBattleAPI.Models;
 
 namespace SeaBattle.Tools
 {
     public class Auth
     {
         public static User User { get; set; }
-       
+        public static Room Room { get; set; }
+
     }
 }

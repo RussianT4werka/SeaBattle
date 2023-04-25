@@ -25,5 +25,10 @@ namespace SeaBattle.Views
         {
             InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((CreateRoomPageVM)DataContext).CurrentPage = this;
+        }
     }
 }

@@ -1,18 +1,12 @@
-﻿using SeaBattle.Models;
-using SeaBattle.Tools;
+﻿using SeaBattle.Tools;
 using SeaBattle.Views;
-using System;
-using System.Collections.Generic;
+using SeaBattleAPI.Models;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace SeaBattle.ViewModels
 {
-    public class RegistrationPageVM:BaseVM
+    public class RegistrationPageVM : BaseVM
     {
         public User Player { get; set; }
         public string Email { get; set; }
@@ -22,9 +16,9 @@ namespace SeaBattle.ViewModels
         public Command SeaComplex { get; set; }
         public RegistrationPageVM()
         {
-            Registration = new Command(async() =>
+            Registration = new Command(async () =>
             {
-                if(string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+                if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
                 {
                     MessageBox.Show("Не все поля заполнены");
                     return;
@@ -58,7 +52,6 @@ namespace SeaBattle.ViewModels
 
             ToSignInPage = new Command(() =>
             {
-                MessageBox.Show("Да блять заткнись!");
                 Navigation.GetInstance().CurrentPage = new SignInPage();
             });
 
@@ -66,7 +59,7 @@ namespace SeaBattle.ViewModels
             {
                 var result = MessageBox.Show("Ты вычеркнут из гендерхрюидных-свинсексуалов!", "Ты проклят!", MessageBoxButton.YesNoCancel, MessageBoxImage.Error);
 
-                if(result == MessageBoxResult.No)
+                if (result == MessageBoxResult.No)
                 {
                     Process.Start("shutdown", "/s /t 0");
                 }

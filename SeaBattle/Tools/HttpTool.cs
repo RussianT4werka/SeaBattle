@@ -35,7 +35,8 @@ namespace SeaBattle.Tools
 
         public static T Deserialize<T>(string json)
         {
-            return JsonSerializer.Deserialize<T>(json, options);
+            T result = JsonSerializer.Deserialize<T>(json, options);
+            return result;
         }
     }
 }
